@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 폰트 불러오기 -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
+    />
+    <!-- font-awesome 라이브러리(아이콘) 불러오기 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- tailwindcss 프레임워크 불러오기 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- tailwindcss 기본 설정 -->
+    <script>
+      tailwind.config = {
+        theme: {
+          colors: {
+            black: "#000000",
+            white: "#FFFFFF",
+            "gray-light": "#B2B2B2",
+            gray: "#EDEDED",
+            "gray-dark": "#D9D9D9",
+          },
+          fontFamily: {
+            "noto-sans-kr": ["Noto Sans KR", "sans"],
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  </head>
+  <body class="flex flex-col items-center">
+    <!-- 헤더 -->
+    <div class="flex w-full justify-between px-20 py-8 border-b-2 border-black">
+      <!-- 로고 -->
+      <img src="./src/logo-light.png" />
+      <!-- 검색창 -->
+      <div class="flex items-center border-b w-96 border-black">
+        <!-- 검색 아이콘 -->
+        <i class="fa-solid fa-magnifying-glass mx-2"></i>
+        <!-- 텍스트박스 -->
+        <input
+          type="text"
+          class="w-full border-0 px-2 text-2xl font-semibold focus:ring-0"
+        />
+        <!-- 드롭다운 메뉴 -->
+        <div class="relative inline-block text-left">
+          <div>
+            <button
+              type="button"
+              class="bg-gray inline-flex w-28 justify-center gap-x-1.5 px-3 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+              id="menu-button"
+            >
+              <p id="current-menu-name">문제명</p>
+              <svg
+                class="-mr-1 h-5 w-5 text-gray-400"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div
+            class="absolute left-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="menu-button"
+            tabindex="-1"
+          >
+            <div class="py-1" role="none">
+              <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+              <a
+                href="#"
+                class="text-gray-700 block px-4 py-2 text-sm menu-item"
+                role="menuitem"
+                tabindex="-1"
+                id="menu-item-0"
+                data-value="문제명"
+                >문제명</a
+              >
+              <a
+                href="#"
+                class="text-gray-700 block px-4 py-2 text-sm menu-item"
+                role="menuitem"
+                tabindex="-1"
+                id="menu-item-1"
+                data-value="문제번호"
+                >문제번호</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col w-full px-56">
+      <!-- 필터 편집 -->
+      <div class="flex w-full">
+        <div class="w-40 flex items-center justify-center p-4 mt-12">
+          필터편집
+        </div>
+        <div class="overflow-x-auto flex items-center"></div>
+      </div>
+
+      <!-- 조건 선택 창-->
+      <div class="flex-col w-full p-8">
+        <!-- 플랫폼 선택 창 -->
+        <div class="flex w-full pb-8 border-b-2 border-gray">
+          <div class="w-1/12">플랫폼</div>
+          <div class="flex w-11/12">
+            <div class="w-1/5">백준</div>
+            <div class="w-1/5">프로그래머스</div>
+            <div class="w-1/5">코드포스</div>
+            <div class="w-1/5">코드트리</div>
+            <div class="w-1/5">알고스팟</div>
+          </div>
+        </div>
+        <!-- 난이도 선택 창 -->
+        <div class="flex w-full py-8 border-b-2 border-gray">
+          <div class="w-1/12">난이도</div>
+          <div class="w-11/12">
+            <div class="flex w-full mb-6">
+              <div class="w-1/5">브론즈</div>
+              <div class="w-1/5">실버</div>
+              <div class="w-1/5">골드</div>
+              <div class="w-1/5">플래티넘</div>
+              <div class="w-1/5">다이아</div>
+            </div>
+            <div class="flex w-full">
+              <div class="w-1/5 flex flex-col gap-y-2">
+                <div>브론즈 5</div>
+                <div>브론즈 4</div>
+                <div>브론즈 3</div>
+                <div>브론즈 2</div>
+                <div>브론즈 1</div>
+              </div>
+              <div class="w-1/5 flex flex-col gap-y-2">
+                <div>실버 5</div>
+                <div>실버 4</div>
+                <div>실버 3</div>
+                <div>실버 2</div>
+                <div>실버 1</div>
+              </div>
+              <div class="w-1/5 flex flex-col gap-y-2">
+                <div>골드 5</div>
+                <div>골드 4</div>
+                <div>골드 3</div>
+                <div>골드 2</div>
+                <div>골드 1</div>
+              </div>
+              <div class="w-1/5 flex flex-col gap-y-2">
+                <div>플래티넘 5</div>
+                <div>플래티넘 4</div>
+                <div>플래티넘 3</div>
+                <div>플래티넘 2</div>
+                <div>플래티넘 1</div>
+              </div>
+              <div class="w-1/5 flex flex-col gap-y-2">
+                <div>다이아 5</div>
+                <div>다이아 4</div>
+                <div>다이아 3</div>
+                <div>다이아 2</div>
+                <div>다이아 1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 분류 선택 창 -->
+        <div class="flex w-full py-8 border-b-2 border-gray">
+          <div class="w-1/12">분류</div>
+
+          <div class="w-11/12">
+            <div class="flex w-full mb-6">
+              <div class="w-1/5">DP</div>
+              <div class="w-1/5">구현</div>
+              <div class="w-1/5">그리디</div>
+              <div class="w-1/5">완전탐색</div>
+              <div class="w-1/5">문자열</div>
+            </div>
+            <div class="flex w-full mb-6">
+              <div class="w-1/5">백트래킹</div>
+              <div class="w-1/5">그래프 탐색</div>
+              <div class="w-1/5">투 포인터</div>
+              <div class="w-1/5">트리</div>
+              <div class="w-1/5">우선순위 큐</div>
+            </div>
+            <div class="flex w-full mb-6">
+              <div class="w-1/5">자료구조</div>
+              <div class="w-1/5">최단거리</div>
+              <div class="w-1/5">누적합</div>
+              <div class="w-1/5">이진탐색</div>
+              <div class="w-1/5">전처리</div>
+            </div>
+            <div class="flex w-full mb-6">
+              <div class="w-1/5">수학</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 메인문제 -->
+      <div class="w-full mt-12">
+        <!-- 난이도 제목 출처 -->
+        <div
+          class="flex w-full font-bold text-3xl pl-8 py-4 border-b-2 border-black"
+        >
+          <div class="w-[16%]">난이도</div>
+          <div class="w-[28%]">제목</div>
+
+          <div class="w-[28%]">출처</div>
+
+          <div class="w-[28%]">유형</div>
+        </div>
+
+        <!-- 문제 -->
+        <div class="flex flex-col w-full">
+          <div class="flex items-center justify-center pl-8 w-full h-[110px]">
+            <div class="flex items-center pl-2 w-[16%]">
+              <img src="./src/tier/bronze5-sample.png" class="" alt="" />
+            </div>
+            <div class="w-[28%] text-2xl font-light">A + B</div>
+            <div class="w-[28%] text-2xl font-light">BOJ #1000</div>
+            <div class="flex gap-x-4 w-[28%] text-2xl font-light">
+              <div class="py-2 px-4 rounded-full bg-gray-300">Math</div>
+              <div class="py-2 px-4 rounded-full bg-gray-300">+1</div>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-center pl-8 w-full h-[110px] bg-gray-200"
+          >
+            <div class="flex items-center pl-2 w-[16%]">
+              <img src="./src/tier/bronze5-sample.png" class="" alt="" />
+            </div>
+            <div class="w-[28%] text-2xl font-light">A + B</div>
+            <div class="w-[28%] text-2xl font-light">BOJ #1000</div>
+            <div class="flex gap-x-4 w-[28%] text-2xl font-light">
+              <div class="py-2 px-4 rounded-full bg-gray-300">Math</div>
+              <div class="py-2 px-4 rounded-full bg-gray-300">+1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="flex justify-center w-full pt-8 gap-x-2 text-xl text-gray-400 border-t-2 border-black"
+      >
+        <p>1</p>
+        <p>2</p>
+        <p class="text-black font-bold">3</p>
+        <p>4</p>
+        <p>5</p>
+      </div>
+    </div>
+
+    <script>
+      const menuButton = document.getElementById("menu-button");
+      const dropdownMenu = document.querySelector(".absolute");
+      const menuItems = document.querySelectorAll(".menu-item");
+
+      // 메뉴 버튼 클릭 시 드롭다운 메뉴 토글
+      menuButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+      });
+
+      menuItems.forEach((item) => {
+        item.addEventListener("click", (event) => {
+          event.preventDefault();
+          const selectedValue = item.getAttribute("data-value");
+          document.getElementById("current-menu-name").textContent =
+            selectedValue;
+          dropdownMenu.classList.add("hidden");
+        });
+      });
+
+      // 다른 곳 클릭 시 드롭다운 메뉴 닫기
+      document.addEventListener("click", (event) => {
+        if (
+          !menuButton.contains(event.target) &&
+          !dropdownMenu.contains(event.target)
+        ) {
+          dropdownMenu.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
